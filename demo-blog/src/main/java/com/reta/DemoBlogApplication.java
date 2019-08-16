@@ -15,10 +15,5 @@ public class DemoBlogApplication {
 		SpringApplication.run(DemoBlogApplication.class, args);
 	}
 	
-	@GetMapping("hello")
-	public String hello() {
-		return "hello";
-	}
-	
 
 }

@@ -13,12 +13,12 @@
 
 <c:forEach items="${aList }" var="a">
 	<article class="excerpt excerpt-1">
-		<a class="focus" href="article.html" title=""><img class="thumb"
+		<a class="focus" href="article?id=${a.id }" title=""><img class="thumb"
 			data-original="images/excerpt.jpg" src="images/excerpt.jpg" alt=""></a>
 		<header>
-			<a class="cat" href="program">${a.category.name }<i></i></a>
+			<a class="cat" href="category?id=${a.id }">${a.category.name }<i></i></a>
 			<h2>
-				<a href="article.html" title="">${a.title }</a>
+				<a href="article?id=${a.id }" title="">${a.title }</a>
 			</h2>
 		</header>
 		<p class="meta">

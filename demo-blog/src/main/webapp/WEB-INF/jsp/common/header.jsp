@@ -22,8 +22,9 @@
 								rel="nofollow"><i class="fa fa-rss"></i> RSS</a></li>
 						</ul></li>
 				</ul>
-				<a data-toggle="modal" data-target="#loginModal" class="login"
-					rel="nofollow">Hi,请登录</a>&nbsp;&nbsp;<a href="javascript:;"
+				<a data-toggle="modal" data-target="${loginedUser == null ? '#loginModal' : '' }" class="login"
+					rel="nofollow">${loginedUser == null ? 'Hi,请登录' : '欢迎：'.cancat(loginedUser.cnName) }</a>&nbsp;&nbsp;
+					<a href="javascript:;"
 					class="register" rel="nofollow">我要注册</a>&nbsp;&nbsp;<a href=""
 					rel="nofollow">找回密码</a>
 			</div>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.reta.bean.Article;
 import com.reta.bean.Category;
 import com.reta.biz.ArticleBiz;
 import com.reta.biz.CategoryBiz;
@@ -37,9 +38,17 @@ public class ArticleAction {
 	
 	//分类文章
 	@GetMapping("category")
-	public String category(int id,@RequestParam(defaultValue="1") int page, Model model) {
+	public String category(int id, @RequestParam(defaultValue="1") int page, Model model) {
 		model.addAttribute("aList", abiz.queryByCategory(id, page));
 		return "category";
+	}
+
+	@GetMapping("article")
+	public String article(int id, Model model) {
+		Article a= abiz.read(id);
+		//不设定属性名称，则使用小写开头的类名
+		model.addAttribute(a);
+		return "article";
 	}
 	
 }

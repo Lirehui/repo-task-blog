@@ -85,12 +85,31 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-					<button type="submit" class="btn btn-primary">登录</button>
+					<button type="button" class="btn btn-primary" onclick="login()">登录</button>
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+function login(){
+	var url = "login";
+	var name = loginModalUserName.value;
+	var pwd = loginModalUserPwd.value;
+	var param = {name:name, password:pwd}
+	//匿名函数
+	var callback = function(result){
+		if(result.code == 1){
+			$(".login").text("欢迎：" + result.data.cnName);
+			$(".login").attr("data-target","");
+			$('#loginModal').modal('hide');
+		}else{
+			alert(result.msg)
+		}
+	};
+	$.post{url,param,callback};
+}
+</script>
 <!--右键菜单列表-->
 <div id="rightClickMenu">
 	<ul class="list-group rightClickMenuList">

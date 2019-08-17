@@ -68,6 +68,11 @@
 					<div class="title">
 						<h3>相关推荐</h3>
 					</div>
+					<ul>
+						<c:forEach items="${relaList }" var="a">
+							<li><a href="article?id=${a.id }">${a.title }</a></li>
+						</c:forEach>
+					</ul>
 				</div>
 				<div class="title" id="comment">
 					<h3>

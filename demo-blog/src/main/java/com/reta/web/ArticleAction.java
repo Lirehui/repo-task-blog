@@ -43,9 +43,13 @@ public class ArticleAction {
 		return "category";
 	}
 
+	//显示文章
 	@GetMapping("article")
 	public String article(int id, Model model) {
 		Article a= abiz.read(id);
+		//查相关文章
+		List<Article> relaList = abiz.queryRela(a.getCategoryid());
+		model.addAttribute("relaList", relaList);
 		//不设定属性名称，则使用小写开头的类名
 		model.addAttribute(a);
 		return "article";

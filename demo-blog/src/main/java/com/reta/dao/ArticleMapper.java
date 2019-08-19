@@ -1,9 +1,10 @@
 package com.reta.dao;
 
-import com.reta.bean.Article;
-import com.reta.bean.ArticleExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import com.reta.bean.Article;
+import com.reta.bean.ArticleExample;
 
 public interface ArticleMapper {
     /**

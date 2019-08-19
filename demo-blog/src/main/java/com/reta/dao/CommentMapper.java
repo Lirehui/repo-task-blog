@@ -1,9 +1,10 @@
 package com.reta.dao;
 
-import com.reta.bean.Comment;
-import com.reta.bean.CommentExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import com.reta.bean.Comment;
+import com.reta.bean.CommentExample;
 
 public interface CommentMapper {
     /**

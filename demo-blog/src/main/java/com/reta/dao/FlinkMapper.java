@@ -1,9 +1,10 @@
 package com.reta.dao;
 
-import com.reta.bean.Flink;
-import com.reta.bean.FlinkExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import com.reta.bean.Flink;
+import com.reta.bean.FlinkExample;
 
 public interface FlinkMapper {
     /**

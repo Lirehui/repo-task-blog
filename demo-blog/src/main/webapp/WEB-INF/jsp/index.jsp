@@ -16,15 +16,6 @@
 <script src="js/jquery-2.1.4.min.js"></script>
 <script src="js/nprogress.js"></script>
 <script src="js/jquery.lazyload.min.js"></script>
-<!--[if gte IE 9]>
-  <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
-  <script src="js/html5shiv.min.js" type="text/javascript"></script>
-  <script src="js/respond.min.js" type="text/javascript"></script>
-  <script src="js/selectivizr-min.js" type="text/javascript"></script>
-<![endif]-->
-<!--[if lt IE 9]>
-  <script>window.location.href='upgrade-browser.html';</script>
-<![endif]-->
 </head>
 
 <body class="user-select">
@@ -130,5 +121,43 @@
 </section>
 <!-- jsp动作标签引入 页脚 子页面 -->
 <jsp:include page="common/footer.jsp"></jsp:include>
+
+<script src="js/jquery.ias.js"></script>
+
+<script type="text/javascript">
+//无限滚动反翻页
+var ias = jQuery.ias({
+	history: false,
+	container : '.content',
+	item: '.excerpt',
+	pagination: '.pagination',
+	next: '.next-page a',
+});
+
+var page = 1;
+ias.on('load', function(event){
+	event.ajaxOptions.data = {page: ++page}
+});
+
+//渲染完成后的事件
+ias.on('rendered', function(items){
+	//沙漏
+	$(".excerpt.thumb").lazylod({
+		placeholder: '/images/occupying.png',
+		threshold: 400
+	});
+	$('.excerpt img').attr('draggable','false');
+	$('.excerpt a').attr('draggable','false');
+})
+
+ias.extension(new IASSpinnerExtension({
+	src: '/images/loading.gif',
+}));
+
+ias.extension(new IASTriggerExtension({
+	text: '查看更多',
+	offset: 2
+}));
+</script>
 </body>
 </html>

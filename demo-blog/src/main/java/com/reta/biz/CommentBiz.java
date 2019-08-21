@@ -25,9 +25,8 @@ public class CommentBiz {
 		cm.insertSelective(comm);
 		//将对应文章的评论数加一
 		Article article=am.selectByPrimaryKey(comm.getArticleid());
-		article.setCommcnt(article.getCommcnt()==null? 1:(article.getCommcnt()+1));
+		article.setCommcnt((article.getCommcnt() == null ? 1 : article.getCommcnt()) + 1);
 		am.updateByPrimaryKey(article);
-		
 		return comm;//数据库中id自增长，在执行insert后将产生的id映射了回来。
 	}
 }

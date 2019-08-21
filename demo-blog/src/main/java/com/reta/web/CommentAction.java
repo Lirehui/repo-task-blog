@@ -20,8 +20,6 @@ import com.reta.vo.Result;
 public class CommentAction {
 
 	@Resource
-	private CommentMapper cm;
-	@Resource
 	private CommentBiz cbiz;
 	
 	@PostMapping("comment")

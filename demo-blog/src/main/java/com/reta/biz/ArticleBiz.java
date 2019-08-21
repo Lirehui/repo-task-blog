@@ -46,12 +46,15 @@ public class ArticleBiz {
 	 */
 	@Transactional	//加入事务注解
 	public Article read(int id) {
+		ArticleExample example=new ArticleExample();
+		example.createCriteria().andIdEqualTo(id);
 		Article a=am.selectByPrimaryKey(id);
 		//更新阅读次数
-		a.setReadcnt((a.getReadcnt()==null?0:a.getReadcnt())+1);
+		a.setReadcnt((a.getReadcnt() == null ? 0 : a.getReadcnt())+1);
 		am.updateByPrimaryKey(a);
 		return a;
 	}
+	
 	//查相关文章
 	public List<Article> queryRela(Integer categoryid) {
 		ArticleExample example=new ArticleExample();
@@ -62,6 +65,11 @@ public class ArticleBiz {
 		//查10个记录
 		PageHelper.startPage(1, 10);
 		return am.selectByExample(example);
+	}
+	
+	
+	public void save(Article article) {
+		am.insert(article);
 	}
 	
 }

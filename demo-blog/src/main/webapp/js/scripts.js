@@ -116,6 +116,44 @@ document.body.onselectstart = document.body.ondrag = function () {
 //启用工具提示
 $('[data-toggle="tooltip"]').tooltip();
  
+ 
+//无限滚动反翻页
+/*var ias=jQuery.ias({
+	history: false,
+	container : '.content',
+	item: '.excerpt',
+	pagination: '.pagination',
+	next: '.next-page a',
+});
+var page=1;
+ias.on('load',function(event){
+	event.ajaxOptions.data={page:++page};
+});
+/**渲染完成后的事件
+ias.on('rendered',function(items){
+	$('.excerpt .thumb').lazyload({
+			placeholder: '/images/occupying.png',//沙漏
+			threshold: 400
+		});
+		$('.excerpt img').attr('draggable','false');
+		$('.excerpt a').attr('draggable','false');
+});
+*//**旧版本的写法
+ * trigger: '查看更多',
+ * triggerPageThreshold: 5,
+ * 新版本的写法：
+ *//*
+ias.extension(new IASTriggerExtension({
+    text: '查看更多', // optionally
+    offset:3
+}));
+*//**旧版本的写法
+ * loader: '<div class="pagination-loading"><img src="/images/loading.gif" /></div>',
+ *//*
+ias.extension(new IASSpinnerExtension({
+    src: '/images/loading.gif', // optionally
+}));*/
+
 //鼠标滚动超出侧边栏高度绝对定位
 $(window).scroll(function () {
     var sidebar = $('.sidebar');

@@ -27,17 +27,17 @@
 	<div class="content-wrap">
 		<div class="content">
 			<h3>博文编辑</h3>
-			<form:form action="saveArticle" methodAttribute="article">
-				标题：<form:input path="title"></form:input>
-				分类：<form:select path="categoryId" items="${cList }" itemLabel="name" itemValue="id"></form:select>
-				标签：<form:input path="label"></form:input>
+			<form:form action="saveArticle" modelAttribute="article">
+				标题：<form:input path="title"/>
+				分类：<form:select path="categoryid" 
+						items="${cList}" itemLabel="name" 
+						itemValue="id"/>
+				标签：<form:input path="label"/>
 				<form:textarea path="content"/>
-				<form:textarea path="content">
-					This is my textare to be replaced with CKEditor.
-				</</form:textarea>
 				<script>
 					CKEDITOR.replace('content');
 				</script>
+				<input type="submit" value="保存">
 			</form:form>
 		</div>
 	</div>

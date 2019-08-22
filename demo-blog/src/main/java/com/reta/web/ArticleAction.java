@@ -1,5 +1,7 @@
 package com.reta.web;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.github.pagehelper.PageHelper;
 import com.reta.bean.Article;
@@ -67,16 +71,36 @@ public class ArticleAction {
 	
 
 	@GetMapping("toedit")
-	public String rrtoedit(Model model) {
+	public String toedit(Model model) {
 		model.addAttribute("article", new Article());
 		return "articleEdit";
 	}
 
 	@PostMapping("saveArticle")
-	public String save(Article article, @SessionAttribute("loginedUser") User user, Model model) {
+	public String save(Article article, 
+			@SessionAttribute("loginedUser") User user, 
+			Model model) {
 		article.setAuthor(user.getName());
 		article.setCreatetime(new Date());
 		abiz.save(article);
 		return article(1, article.getId(), model);
 	}
+	
+	@PostMapping("upload")
+	@ResponseBody
+	public String upload(
+			@RequestParam("upload") MultipartFile file,
+			String CKEditorFuncNum) throws IllegalStateException, IOException {
+		String fname = file.getOriginalFilename();
+		File dest = new File("d:/blog/upload/" + fname);
+		file.transferTo(dest);
+		
+		//拼接回调js代码
+		String js = "<script type=\"text/javascript\">";
+		js += "window.parent.CKEDITOR.tools.callFunction(" + CKEditorFuncNum + ",'upload'" + fname + ",'')";
+		js += "</script>";
+		
+		return js;
+	}
+	
 }

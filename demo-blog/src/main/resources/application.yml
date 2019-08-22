@@ -10,6 +10,17 @@ spring:
       username: root
       password: a
       driver-class-name: com.mysql.jdbc.Driver
+   http:
+      encoding:
+         force: true
+         charset: UTF-8
+         enabled: true
+   resource:
+      # web文件映射（数组）
+      staticLocations:
+         - classpath:/static
+         - file:/d:/blog/
+   
    
    # 邮件服务配置
    mail:
@@ -30,6 +41,8 @@ mail:
 # 更改端口
 server:
    port: 80
+   tomcat:
+      uri-encoding: UTF-8
 
 # 日志输出
 logging:
